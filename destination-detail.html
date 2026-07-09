@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destination Details | Ramji Tour and Travel</title>
+    <meta name="description" content="Discover detailed information about top Indian destinations, including attractions, best time to visit, and local culture.">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.ramjitravels.com/destination-detail.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { blue: '#0b2e59', orange: '#ff6b35', light: '#f8f9fa' } }, fontFamily: { sans: ['Outfit', 'sans-serif'] } } }
+        }
+    </script>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-brand-light dark:bg-slate-900 text-gray-800 dark:text-gray-100 antialiased">
+    <!-- Navbar -->
+    <nav class="w-full z-50 bg-white dark:bg-slate-800 shadow-sm border-b border-gray-100 dark:border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/images/logo.png" alt="Ramji Travels Logo" class="h-[104px] w-[104px] object-contain" onerror="this.src='https://placehold.co/100x100?text=Logo'">
+                    <span class="text-2xl font-extrabold text-brand-blue dark:text-white tracking-tight">Ramji <span class="text-brand-orange">Travels</span></span>
+                </a>
+                <ul class="hidden md:flex space-x-6 items-center">
+                    <li><a href="index.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Home</a></li>
+                    <li><a href="destinations.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Destinations</a></li>
+                    <li><a href="packages.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Packages</a></li>
+                    <li><a href="gallery.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Gallery</a></li>
+                    <li><a href="cab-booking.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Cab Booking</a></li>
+                    <li><a href="itinerary-builder.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Plan Itinerary</a></li>
+                    <li><a href="about.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">About Us</a></li>
+                </ul>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="contact.html" class="text-brand-blue dark:text-white font-medium hover:text-brand-orange dark:hover:text-brand-orange transition-colors self-center">Contact</a>
+                    <button id="login-btn" onclick="document.getElementById('auth-modal').classList.remove('hidden')" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Login / Sign Up</button>
+                    
+                    <button class="theme-toggle-btn p-2 rounded-full hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors text-gray-600 dark:text-gray-300 ml-2" aria-label="Toggle Dark Mode">
+                        <svg class="theme-icon-sun w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="theme-icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <a id="profile-btn" href="profile.html" class="hidden text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors flex items-center gap-2" title="My Profile">
+                        <img src="https://ui-avatars.com/api/?name=User&background=0b2e59&color=fff" alt="Profile" class="w-8 h-8 rounded-full border-2 border-brand-blue dark:border-white">
+                    </a>
+                    <a href="booking.html" class="bg-brand-orange text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Book Now</a>
+                </div>
+            </div>
+        </div>
+</nav>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+            <div>
+                <h1 id="dest-title" class="text-4xl md:text-5xl font-bold text-brand-blue dark:text-white mb-2">Royal Jaipur Heritage</h1>
+                <div class="flex items-center text-gray-500 dark:text-gray-400">
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                    <span id="dest-location">Jaipur, India</span>
+                </div>
+            </div>
+            <div class="text-right">
+                <span class="block text-sm text-gray-500 dark:text-gray-400">Starting from</span>
+                <span id="dest-price" class="text-3xl font-extrabold text-brand-orange">₹300</span>
+            </div>
+        </div>
+
+        <!-- Photo Gallery (CSS Grid) -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12 h-96">
+            <div class="md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden">
+                <img id="dest-main-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1554481923-a6918bd997bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="rounded-2xl overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1573790387438-4da90503e5de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="rounded-2xl overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center text-white font-bold text-xl cursor-pointer hover:bg-black/30 transition">
+                    +12 Photos
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Main Content -->
+            <div class="lg:w-2/3">
+                <h2 class="text-2xl font-bold text-brand-blue mb-4 dark:text-white">About This Destination</h2>
+                <p id="dest-desc" class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                    Jaipur, the famed Pink City, with its varied landscape of hills and mountains, rugged forts, majestic palaces, and deeply spiritual culture.
+                </p>
+
+                <!-- Weather & Best Time Info -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm flex items-center gap-4">
+                        <div class="p-3 bg-blue-50 rounded-full text-blue-500">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-blue dark:text-white">Current Weather</h4>
+                            <p class="text-gray-500 dark:text-gray-400">28°C / 82°F, Partly Cloudy</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm flex items-center gap-4">
+                        <div class="p-3 bg-orange-50 rounded-full text-brand-orange">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-blue dark:text-white">Best Time to Visit</h4>
+                            <p class="text-gray-500 dark:text-gray-400">April to October (Dry Season)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaflet Map Container -->
+                <h2 class="text-2xl font-bold text-brand-blue mb-4 mt-12 dark:text-white">Location Map</h2>
+                <div id="destination-map" class="h-96 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 z-10 mb-12"></div>
+
+                <!-- Reviews Section -->
+                <h2 class="text-2xl font-bold text-brand-blue mb-4 dark:text-white">Traveler Reviews</h2>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm mb-12">
+                    <div id="reviews-container" class="mb-8">
+                        <p class="text-gray-500 dark:text-gray-400 italic">Loading reviews...</p>
+                    </div>
+
+                    <!-- Add Review Form -->
+                    <h3 class="text-lg font-bold text-brand-blue mb-4 border-t border-gray-100 dark:border-slate-700 pt-6 dark:text-white">Write a Review</h3>
+                    <form id="add-review-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Rating</label>
+                            <select id="review-rating" required class="w-full px-4 py-3 border border-gray-200 dark:border-slate-700 rounded-lg outline-none focus:ring-2 focus:ring-brand-orange bg-white dark:bg-slate-800 transition-shadow">
+                                <option class="dark:bg-slate-800 dark:text-white" value="5">5 - Excellent</option>
+                                <option class="dark:bg-slate-800 dark:text-white" value="4">4 - Very Good</option>
+                                <option class="dark:bg-slate-800 dark:text-white" value="3">3 - Average</option>
+                                <option class="dark:bg-slate-800 dark:text-white" value="2">2 - Poor</option>
+                                <option class="dark:bg-slate-800 dark:text-white" value="1">1 - Terrible</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Your Review</label>
+                            <textarea id="review-comment" required rows="4" placeholder="Tell us about your experience..." class="w-full px-4 py-3 border border-gray-200 dark:border-slate-700 rounded-lg outline-none focus:ring-2 focus:ring-brand-orange transition-shadow"></textarea>
+                        </div>
+                        <button type="submit" class="bg-brand-blue text-white px-6 py-2 rounded-xl font-bold hover:bg-blue-900 transition-colors shadow-md">Submit Review</button>
+                        <p id="review-auth-msg" class="text-sm text-brand-orange hidden mt-2">Please log in to submit a review.</p>
+                    </form>
+                </div>
+
+                <!-- Recommended For You Section -->
+                <h2 class="text-2xl font-bold text-brand-blue mb-4 dark:text-white">Recommended For You</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8" id="recommendations-container">
+                    <!-- Recommendations injected by JS -->
+                    <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-shadow group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&q=80&w=800" alt="Agra" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 left-4 bg-brand-orange text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Similar</div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-brand-blue mb-1 dark:text-white">Taj Mahal Tour</h3>
+                            <div class="text-lg font-extrabold text-brand-orange mb-3">₹150</div>
+                            <a href="#" class="text-sm font-semibold text-brand-blue hover:text-brand-orange transition-colors dark:text-white">View Details &rarr;</a>
+                        </div>
+                    </div>
+                     <div class="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-slate-700 hover:shadow-xl transition-shadow group">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1598324789736-4861f89564a0?auto=format&fit=crop&q=80&w=800" alt="Udaipur" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 left-4 bg-brand-orange text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">Popular</div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-brand-blue mb-1 dark:text-white">Udaipur Palaces</h3>
+                            <div class="text-lg font-extrabold text-brand-orange mb-3">₹450</div>
+                            <a href="#" class="text-sm font-semibold text-brand-blue hover:text-brand-orange transition-colors dark:text-white">View Details &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Actions -->
+            <div class="lg:w-1/3">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-slate-700 sticky top-28">
+                    <h3 class="text-xl font-bold text-brand-blue mb-4 dark:text-white">Ready to go?</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mb-6">Start planning your itinerary or book this package directly with us.</p>
+                    <a id="build-itinerary-btn" href="itinerary-builder.html?dest=d1" class="block w-full text-center bg-brand-blue text-white font-bold py-3 rounded-xl hover:bg-blue-900 transition-colors mb-3">
+                        Build Itinerary
+                    </a>
+                    <a id="book-package-btn" href="booking.html?pkg=1" class="block w-full text-center border-2 border-brand-orange text-brand-orange font-bold py-3 rounded-xl hover:bg-brand-orange hover:text-white transition-colors">
+                        Book Package
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (id) {
+                document.getElementById('build-itinerary-btn').href = `itinerary-builder.html?dest=${id}`;
+                document.getElementById('book-package-btn').href = `booking.html?pkg=${id}`;
+            }
+        });
+    </script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module">
+        import { fetchDestinations, fetchPackages } from './js/data-fetcher.js';
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            let lat = 26.9124, lng = 75.7873;
+            
+            if (id) {
+                document.getElementById('build-itinerary-btn').href = `itinerary-builder.html?dest=${id}`;
+                document.getElementById('book-package-btn').href = `booking.html?pkg=${id}`;
+
+                try {
+                    const [destinations, packages] = await Promise.all([
+                        fetchDestinations(),
+                        fetchPackages()
+                    ]);
+                    
+                    // Look in both collections
+                    // Note: IDs from data-fetcher might be integers, so we convert URL param to string for safe comparison
+                    const allItems = [...destinations, ...packages];
+                    const item = allItems.find(i => String(i.id) === id);
+
+                    if (item) {
+                        document.title = `${item.title} | Ramji Tour and Travel`;
+                        document.getElementById('dest-title').innerText = item.title;
+                        document.getElementById('dest-location').innerText = item.location || item.category || 'Location';
+                        document.getElementById('dest-price').innerText = item.price || item.budget || 'TBD';
+                        document.getElementById('dest-main-img').src = item.image;
+                        if (item.description) document.getElementById('dest-desc').innerText = item.description;
+                        if (item.lat && item.lng) {
+                            lat = item.lat;
+                            lng = item.lng;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error fetching destination data', e);
+                }
+            }
+
+            // Initialize Leaflet Map centered on coordinates
+            const map = L.map('destination-map').setView([lat, lng], 10);
+
+            // Add CartoDB Positron base layer (clean, modern look)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+
+            // Add a marker
+            const titleText = document.getElementById('dest-title').innerText || 'Destination';
+            const locationText = document.getElementById('dest-location').innerText || 'Location';
+            L.marker([lat, lng]).addTo(map)
+                .bindPopup(`<b>${titleText}</b><br>${locationText}`)
+                .openPopup();
+        });
+    </script>
+    
+    <script type="module">
+        import { fetchReviews, submitReview, renderReviews } from './js/reviews.js';
+        import { supabaseClient } from './js/supabase-config.js';
+
+        const PACKAGE_ID = "00000000-0000-0000-0000-000000000000"; // Dummy ID for Jaipur package
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Load reviews
+            const reviews = await fetchReviews(PACKAGE_ID);
+            renderReviews(reviews, 'reviews-container');
+
+            // Handle review submission
+            const reviewForm = document.getElementById('add-review-form');
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    
+                    const rating = parseInt(document.getElementById('review-rating').value);
+                    const comment = document.getElementById('review-comment').value;
+
+                    const success = await submitReview(PACKAGE_ID, rating, comment);
+                    if (success) {
+                        reviewForm.reset();
+                        // Reload reviews
+                        const updatedReviews = await fetchReviews(PACKAGE_ID);
+                        renderReviews(updatedReviews, 'reviews-container');
+                    }
+                });
+            }
+
+            // Check auth for review form
+            supabaseClient.auth.getSession().then(({ data: { session } }) => {
+                const btn = document.querySelector('#add-review-form button');
+                const msg = document.getElementById('review-auth-msg');
+                if (!session) {
+                    btn.disabled = true;
+                    btn.classList.add('opacity-50', 'cursor-not-allowed');
+                    msg.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 max-w-md w-full relative">
+            <button onclick="document.getElementById('auth-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 dark:text-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-3xl font-bold text-brand-blue dark:text-white mb-6" id="auth-title">Welcome Back</h2>
+            <form id="auth-form" class="space-y-4">
+                <div id="signup-fields" class="hidden space-y-4">
+                    <input type="text" id="auth-first-name" placeholder="First Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    <input type="text" id="auth-last-name" placeholder="Last Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+                <input type="email" id="auth-email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <input type="password" id="auth-password" placeholder="Password" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <button type="submit" class="w-full bg-brand-orange text-white py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors" id="auth-submit">Login</button>
+            </form>
+            <div class="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
+                <span id="auth-toggle-text">Don't have an account?</span>
+                <button type="button" id="auth-toggle-btn" class="text-brand-blue font-bold hover:underline dark:text-white">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

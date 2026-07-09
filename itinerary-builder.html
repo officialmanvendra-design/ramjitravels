@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Itinerary Builder | Ramji Tour and Travel</title>
+    <meta name="description" content="Plan your perfect trip with our interactive Smart Itinerary Builder. Drag and drop activities, visualize your route on a map, and download your personalized travel plan.">
+    <meta name="keywords" content="itinerary builder, trip planner, travel planner, India itinerary, custom travel plan, Ramji travels">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ramjitravels.com/itinerary-builder.html">
+    <meta property="og:title" content="Smart Itinerary Builder | Ramji Tour and Travel">
+    <meta property="og:description" content="Plan your perfect trip with our interactive Smart Itinerary Builder. Drag and drop activities, visualize your route on a map, and download your personalized travel plan.">
+    <meta property="og:image" content="https://www.ramjitravels.com/assets/images/logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Smart Itinerary Builder | Ramji Tour and Travel">
+    <meta name="twitter:description" content="Plan your perfect trip with our interactive Smart Itinerary Builder. Drag and drop activities, visualize your route on a map, and download your personalized travel plan.">
+    <meta name="twitter:image" content="https://www.ramjitravels.com/assets/images/logo.png">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.ramjitravels.com/itinerary-builder.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { blue: '#0b2e59', orange: '#ff6b35', light: '#f8f9fa' } }, fontFamily: { sans: ['Outfit', 'sans-serif'] } } }
+        }
+    </script>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Leaflet Routing Machine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <style>
+        .dragging { opacity: 0.5; }
+        .drag-over { background-color: rgba(255, 107, 53, 0.1); border: 2px dashed #ff6b35; }
+        .leaflet-routing-container { display: none !important; }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-100 antialiased h-screen overflow-hidden flex flex-col">
+    <!-- Navbar -->
+    <nav class="w-full z-50 bg-white dark:bg-slate-800 shadow-sm border-b border-gray-100 dark:border-slate-700 flex-shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/images/logo.png" alt="Ramji Travels Logo" class="h-[104px] w-[104px] object-contain" onerror="this.src='https://placehold.co/100x100?text=Logo'">
+                    <span class="text-2xl font-extrabold text-brand-blue dark:text-white tracking-tight">Ramji <span class="text-brand-orange">Travels</span></span>
+                </a>
+                <ul class="hidden md:flex space-x-6 items-center">
+                    <li><a href="index.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Home</a></li>
+                    <li><a href="destinations.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Destinations</a></li>
+                    <li><a href="packages.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Packages</a></li>
+                    <li><a href="gallery.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Gallery</a></li>
+                    <li><a href="cab-booking.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Cab Booking</a></li>
+                    <li><a href="itinerary-builder.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Plan Itinerary</a></li>
+                    <li><a href="about.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">About Us</a></li>
+                </ul>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="contact.html" class="text-brand-blue dark:text-white font-medium hover:text-brand-orange dark:hover:text-brand-orange transition-colors self-center">Contact</a>
+                    <button id="login-btn" onclick="document.getElementById('auth-modal').classList.remove('hidden')" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Login / Sign Up</button>
+                    
+                    <button class="theme-toggle-btn p-2 rounded-full hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors text-gray-600 dark:text-gray-300 ml-2" aria-label="Toggle Dark Mode">
+                        <svg class="theme-icon-sun w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="theme-icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <a id="profile-btn" href="profile.html" class="hidden text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors flex items-center gap-2" title="My Profile">
+                        <img src="https://ui-avatars.com/api/?name=User&background=0b2e59&color=fff" alt="Profile" class="w-8 h-8 rounded-full border-2 border-brand-blue dark:border-white">
+                    </a>
+                    <a href="booking.html" class="bg-brand-orange text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Book Now</a>
+                </div>
+            </div>
+        </div>
+</nav>
+
+    <!-- Main Builder Layout -->
+    <div class="flex-1 flex overflow-hidden">
+        <!-- Sidebar: Activities -->
+        <div class="w-80 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col shadow-sm z-10 overflow-y-auto">
+            <div class="p-4 border-b border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 sticky top-0 z-20">
+                <h2 class="font-bold text-brand-blue dark:text-white text-lg">Activity Bank</h2>
+                <select id="location-selector" class="w-full mt-2 px-3 py-2 text-sm border border-gray-300 dark:border-slate-600 rounded-md focus:ring-1 focus:ring-brand-orange outline-none bg-white dark:bg-slate-800 font-medium text-gray-700 dark:text-gray-300">
+                    <option class="dark:bg-slate-800 dark:text-white" value="">-- Choose a Location --</option>
+                </select>
+                <input type="text" placeholder="Search activities..." class="w-full mt-3 px-3 py-1.5 text-sm border border-gray-300 dark:border-slate-600 rounded focus:ring-1 focus:ring-brand-orange outline-none">
+            </div>
+            <div class="p-4 flex flex-col gap-3" id="activity-bank">
+                <div class="text-center p-4 text-gray-500 dark:text-gray-400 text-sm italic" id="empty-bank-msg">
+                    Please select a location above to see available activities.
+                </div>
+                <!-- Activities injected dynamically by JS -->
+            </div>
+        </div>
+
+        <!-- Center: Itinerary Timeline -->
+        <div class="flex-1 overflow-y-auto p-8 bg-gray-50 dark:bg-slate-900 relative" id="timeline-container">
+            <div class="max-w-2xl mx-auto">
+                <div class="flex justify-between items-end mb-6">
+                    <div>
+                        <h1 class="text-3xl font-bold text-brand-blue dark:text-white" id="itinerary-title">My Itinerary</h1>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Drag and drop activities from the left panel.</p>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 px-4 py-2 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 flex items-center gap-4 text-right">
+                        <div>
+                            <span class="block text-xs text-gray-400 uppercase tracking-wide font-bold">Total Budget</span>
+                            <span class="text-2xl font-extrabold text-brand-orange" id="budget-total">₹0</span>
+                        </div>
+                        <button id="btn-save" class="bg-brand-blue text-white px-4 py-2 rounded-xl text-sm font-bold shadow hover:bg-blue-900 transition-colors">Save Itinerary</button>
+                        <button id="btn-export-pdf" class="bg-gray-100 dark:bg-slate-700 text-brand-blue dark:text-white px-4 py-2 rounded-xl text-sm font-bold shadow hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors border border-gray-200 dark:border-slate-600 flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            Export PDF
+                        </button>
+                        <button id="btn-book-custom" class="bg-brand-orange text-white px-4 py-2 rounded-xl text-sm font-bold shadow hover:bg-orange-600 transition-colors flex items-center gap-2">
+                            Book Itinerary
+                        </button>
+                    </div>
+                </div>
+
+                <div id="days-container" class="space-y-6">
+                    <!-- Day 1 -->
+                    <div class="day-block bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden" data-day="1" draggable="true">
+                        <div class="bg-gray-100 dark:bg-slate-800 px-4 py-3 border-b border-gray-200 dark:border-slate-700 flex justify-between items-center cursor-move" title="Drag to reorder day">
+                            <h3 class="font-bold text-brand-blue dark:text-white">Day 1</h3>
+                            <button class="text-gray-400 hover:text-red-500 transition btn-delete-day" title="Remove Day"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+                        </div>
+                        <div class="drop-zone p-4 min-h-[100px] flex flex-col gap-2 transition-colors bg-white dark:bg-slate-800">
+                            <p class="text-center text-gray-400 text-sm italic placeholder-text py-4 pointer-events-none">Drop activities here</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center pb-12">
+                    <button id="btn-add-day" class="border-2 border-brand-orange text-brand-orange font-bold px-6 py-2 rounded-xl hover:bg-brand-orange hover:text-white transition-colors flex items-center gap-2 mx-auto">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        Add Another Day
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Map View -->
+        <div class="w-96 bg-gray-200 border-l border-gray-300 dark:border-slate-600 relative z-10">
+            <div id="itinerary-map" class="w-full h-full"></div>
+            <div class="absolute top-4 left-4 bg-white dark:bg-slate-800/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-md text-xs font-bold text-brand-blue z-[1000] dark:text-white">Route Map</div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS & Routing Machine -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="module" src="js/itinerary.js"></script>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 max-w-md w-full relative">
+            <button onclick="document.getElementById('auth-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 dark:text-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-3xl font-bold text-brand-blue dark:text-white mb-6" id="auth-title">Welcome Back</h2>
+            <form id="auth-form" class="space-y-4">
+                <div id="signup-fields" class="hidden space-y-4">
+                    <input type="text" id="auth-first-name" placeholder="First Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    <input type="text" id="auth-last-name" placeholder="Last Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+                <input type="email" id="auth-email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <input type="password" id="auth-password" placeholder="Password" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <button type="submit" class="w-full bg-brand-orange text-white py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors" id="auth-submit">Login</button>
+            </form>
+            <div class="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
+                <span id="auth-toggle-text">Don't have an account?</span>
+                <button type="button" id="auth-toggle-btn" class="text-brand-blue font-bold hover:underline dark:text-white">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/ai-assistant.js"></script>
+</body>
+</html>

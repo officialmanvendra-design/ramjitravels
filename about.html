@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>About Us | Ramji Tour and Travel</title>
+    <meta name="description" content="Learn about Ramji Tour and Travel. We are dedicated to providing premium and unforgettable travel experiences across India.">
+    <meta name="keywords" content="about Ramji travels, travel agency India, premium tours, travel company">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ramjitravels.com/about.html">
+    <meta property="og:title" content="About Us | Ramji Tour and Travel">
+    <meta property="og:description" content="Learn about Ramji Tour and Travel. We are dedicated to providing premium and unforgettable travel experiences across India.">
+    <meta property="og:image" content="https://www.ramjitravels.com/assets/images/logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About Us | Ramji Tour and Travel">
+    <meta name="twitter:description" content="Learn about Ramji Tour and Travel. We are dedicated to providing premium and unforgettable travel experiences across India.">
+    <meta name="twitter:image" content="https://www.ramjitravels.com/assets/images/logo.png">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.ramjitravels.com/about.html">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0b2e59',
+                            orange: '#ff6b35',
+                            light: '#f8f9fa'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='css/style.css'>
+</head>
+<body class="font-sans bg-brand-light dark:bg-slate-900 text-gray-800 dark:text-gray-100 antialiased overflow-x-hidden">
+    <nav class='navbar scrolled'>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/images/logo.png" alt="Ramji Travels Logo" class="h-[104px] w-[104px] object-contain" onerror="this.src='https://placehold.co/100x100?text=Logo'">
+                    <span class="text-2xl font-extrabold text-brand-blue dark:text-white tracking-tight">Ramji <span class="text-brand-orange">Travels</span></span>
+                </a>
+                <ul class="hidden md:flex space-x-6 items-center">
+                    <li><a href="index.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Home</a></li>
+                    <li><a href="destinations.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Destinations</a></li>
+                    <li><a href="packages.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Packages</a></li>
+                    <li><a href="gallery.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Gallery</a></li>
+                    <li><a href="cab-booking.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Cab Booking</a></li>
+                    <li><a href="itinerary-builder.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Plan Itinerary</a></li>
+                    <li><a href="about.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">About Us</a></li>
+                </ul>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="contact.html" class="text-brand-blue dark:text-white font-medium hover:text-brand-orange dark:hover:text-brand-orange transition-colors self-center">Contact</a>
+                    <button id="login-btn" onclick="document.getElementById('auth-modal').classList.remove('hidden')" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Login / Sign Up</button>
+                    
+                    <button class="theme-toggle-btn p-2 rounded-full hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors text-gray-600 dark:text-gray-300 ml-2" aria-label="Toggle Dark Mode">
+                        <svg class="theme-icon-sun w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="theme-icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <a id="profile-btn" href="profile.html" class="hidden text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors flex items-center gap-2" title="My Profile">
+                        <img src="https://ui-avatars.com/api/?name=User&background=0b2e59&color=fff" alt="Profile" class="w-8 h-8 rounded-full border-2 border-brand-blue dark:border-white">
+                    </a>
+                    <a href="booking.html" class="bg-brand-orange text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Book Now</a>
+                </div>
+            </div>
+        </div>
+</nav>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-10">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-10 md:p-16 border border-gray-100 dark:border-slate-700 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-orange to-brand-blue"></div>
+            
+            <h1 class="text-4xl md:text-5xl font-extrabold text-brand-blue dark:text-white mb-8">About Us</h1>
+            
+            <div class="prose prose-lg max-w-none text-gray-700 dark:text-gray-300 space-y-6">
+                <p>Welcome to <strong class="text-brand-orange">Ramji Tour & Travels</strong>, your trusted travel partner for seamless, affordable, and reliable travel solutions. We are committed to making every journey comfortable and stress-free by providing a wide range of travel services tailored to your needs.</p>
+                
+                <p>Whether you're planning a business trip, a family vacation, a pilgrimage, or a weekend getaway, our experienced team is here to help you every step of the way. We specialize in <strong class="text-brand-blue dark:text-white">flight ticket booking, cab booking, holiday packages, hotel reservations, and customized travel planning</strong> at competitive prices.</p>
+                
+                <p>At Ramji Tour & Travels, customer satisfaction is our highest priority. We believe that every traveler deserves exceptional service, transparent pricing, and prompt support. Our goal is to build long-term relationships with our customers by delivering reliable travel experiences and personalized assistance.</p>
+                
+                <h3 class="text-2xl font-bold text-brand-blue dark:text-white mt-12 mb-6">Why Choose Us?</h3>
+                
+                <ul class="space-y-3 list-none pl-0">
+                    <li class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 dark:text-gray-300">Fast and secure flight ticket booking</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 dark:text-gray-300">Local and outstation cab services</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 dark:text-gray-300">Domestic and international holiday packages</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 dark:text-gray-300">Affordable prices with no hidden charges</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 dark:text-gray-300">Personalized travel planning</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 dark:text-gray-300">Dedicated customer support</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-brand-orange flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-gray-700 dark:text-gray-300">Safe, reliable, and hassle-free travel experience</span>
+                    </li>
+                </ul>
+                
+                <p class="mt-8">Whether you're traveling across the city or across the world, <strong class="text-brand-orange">Ramji Tour & Travels</strong> is here to make your journey smooth, memorable, and enjoyable.</p>
+                
+                <div class="mt-12 text-center p-8 bg-gray-50 dark:bg-slate-900 dark:bg-slate-700 rounded-2xl border border-gray-100 dark:border-slate-700">
+                    <p class="text-xl md:text-2xl font-bold text-brand-blue dark:text-white italic">"Your Journey, Our Responsibility."</p>
+                </div>
+
+                <div class="mt-16 pt-12 border-t border-gray-100 dark:border-slate-700 flex flex-col md:flex-row items-center gap-8">
+                    <div class="w-48 h-48 md:w-56 md:h-56 flex-shrink-0 relative rounded-full overflow-hidden border-4 border-brand-orange shadow-lg">
+                        <img src="assets/images/manvendra-raj.jpg" alt="Manvendra Raj - Owner" class="w-full h-full object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Manvendra+Raj&background=0b2e59&color=fff&size=256'">
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h2 class="text-3xl font-bold text-brand-blue dark:text-white mb-2">Manvendra Raj</h2>
+                        <p class="text-brand-orange font-semibold text-lg uppercase tracking-wide mb-4">Owner & Founder</p>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            With a passion for exploration and a deep commitment to customer satisfaction, Manvendra founded Ramji Tour & Travels to redefine the travel experience. His vision is to ensure every journey is not just a trip, but a lifetime memory carefully crafted with personal attention and reliable service.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 max-w-md w-full relative">
+            <button onclick="document.getElementById('auth-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 dark:text-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-3xl font-bold text-brand-blue dark:text-white mb-6" id="auth-title">Welcome Back</h2>
+            <form id="auth-form" class="space-y-4">
+                <div id="signup-fields" class="hidden space-y-4">
+                    <input type="text" id="auth-first-name" placeholder="First Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    <input type="text" id="auth-last-name" placeholder="Last Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+                <input type="email" id="auth-email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <input type="password" id="auth-password" placeholder="Password" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <button type="submit" class="w-full bg-brand-orange text-white py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors" id="auth-submit">Login</button>
+            </form>
+            <div class="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
+                <span id="auth-toggle-text">Don't have an account?</span>
+                <button type="button" id="auth-toggle-btn" class="text-brand-blue font-bold hover:underline dark:text-white">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/ai-assistant.js"></script>
+</body>
+</html>

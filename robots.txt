@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin.html
+Disallow: /profile.html
+Disallow: /booking.html
+Disallow: /track-cab.html
+Allow: /

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed | Ramji Tour and Travel</title>
+    <meta name="robots" content="noindex, nofollow">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0b2e59',
+                            orange: '#ff6b35',
+                            light: '#f8f9fa'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans bg-brand-light dark:bg-slate-900 text-gray-800 dark:text-gray-100 antialiased min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-xl max-w-md w-full p-10 text-center relative overflow-hidden success-pop">
+        
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-green-50 to-white -z-10"></div>
+
+        <!-- Animated Checkmark -->
+        <div class="flex justify-center mb-8">
+            <svg class="w-32 h-32 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark-tick" fill="none" stroke="#4bb71b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+
+        <h1 class="text-3xl font-extrabold text-brand-blue mb-4 dark:text-white">Booking Confirmed!</h1>
+        <p class="text-gray-600 dark:text-gray-300 mb-10 text-lg">
+            Thank you for choosing Ramji Travels. Your booking details have been successfully received and are being processed.<br><br>
+            <span class="font-semibold text-green-600">A confirmation email has been sent to your registered email address (Simulated).</span>
+        </p>
+
+        <div class="space-y-4">
+            <a href="profile.html" class="block w-full bg-brand-orange text-white py-4 rounded-xl font-bold text-lg hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/30">
+                View My Bookings
+            </a>
+            <a href="index.html" class="block w-full bg-brand-light dark:bg-slate-900 text-brand-blue py-4 rounded-xl font-bold text-lg hover:bg-gray-200 transition-colors border border-gray-200 dark:border-slate-700 dark:text-white">
+                Back to Home
+            </a>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/auth.js"></script>
+</body>
+</html>

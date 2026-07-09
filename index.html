@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramji Tour and Travel | Premium Journeys & Cab Bookings</title>
+    <meta name="description" content="Discover the world with Ramji Tour and Travel. We craft premium itineraries, offer reliable cab bookings, and provide unforgettable adventures across India.">
+    <meta name="keywords" content="travel agency, tour packages, cab booking, India tours, spiritual tourism, itinerary builder, Ramji travels">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ramjitravels.com/">
+    <meta property="og:title" content="Ramji Tour and Travel | Premium Journeys">
+    <meta property="og:description" content="Discover the world with Ramji Tour and Travel. We craft premium itineraries for unforgettable adventures.">
+    <meta property="og:image" content="https://www.ramjitravels.com/assets/images/logo.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ramji Tour and Travel | Premium Journeys">
+    <meta name="twitter:description" content="Discover the world with Ramji Tour and Travel. We craft premium itineraries for unforgettable adventures.">
+    <meta name="twitter:image" content="https://www.ramjitravels.com/assets/images/logo.png">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.ramjitravels.com/">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0b2e59',
+                            orange: '#ff6b35',
+                            light: '#f8f9fa'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="font-sans bg-brand-light dark:bg-slate-900 text-gray-800 dark:text-gray-100 antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white dark:bg-slate-800/80 dark:bg-slate-900/90 backdrop-blur-md shadow-sm">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3">
+                    <img src="assets/images/logo.png" alt="Ramji Travels Logo" class="h-[104px] w-[104px] object-contain" onerror="this.src='https://placehold.co/100x100?text=Logo'">
+                    <span class="text-2xl font-extrabold text-brand-blue dark:text-white tracking-tight">Ramji <span class="text-brand-orange">Travels</span></span>
+                </a>
+                <ul class="hidden md:flex space-x-6 items-center">
+                    <li><a href="index.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Home</a></li>
+                    <li><a href="destinations.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Destinations</a></li>
+                    <li><a href="packages.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Packages</a></li>
+                    <li><a href="gallery.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Gallery</a></li>
+                    <li><a href="cab-booking.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Cab Booking</a></li>
+                    <li><a href="itinerary-builder.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Plan Itinerary</a></li>
+                    <li><a href="about.html" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">About Us</a></li>
+                </ul>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="contact.html" class="text-brand-blue dark:text-white font-medium hover:text-brand-orange dark:hover:text-brand-orange transition-colors self-center">Contact</a>
+                    <button id="login-btn" onclick="document.getElementById('auth-modal').classList.remove('hidden')" class="text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors">Login / Sign Up</button>
+                    
+                    <button class="theme-toggle-btn p-2 rounded-full hover:bg-gray-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors text-gray-600 dark:text-gray-300 ml-2" aria-label="Toggle Dark Mode">
+                        <svg class="theme-icon-sun w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="theme-icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <a id="profile-btn" href="profile.html" class="hidden text-gray-800 dark:text-gray-100 hover:text-brand-orange font-medium transition-colors flex items-center gap-2" title="My Profile">
+                        <img src="https://ui-avatars.com/api/?name=User&background=0b2e59&color=fff" alt="Profile" class="w-8 h-8 rounded-full border-2 border-brand-blue dark:border-white">
+                    </a>
+                    <a href="booking.html" class="bg-brand-orange text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Book Now</a>
+                </div>
+            </div>
+        </div>
+</nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen min-h-[700px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0 bg-black">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80" poster="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=2021&q=80">
+                <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-blue/80 to-brand-blue/30 pointer-events-none"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white mt-16">
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-up">
+                Discover India & Nepal<br/>with <span class="text-brand-orange">Ramji Travels</span>
+            </h1>
+            <p class="text-lg md:text-xl font-light mb-10 max-w-2xl text-white/90">
+                Your premium gateway to unforgettable adventures in the mystical lands of India and Nepal. Let us craft the perfect itinerary for your next dream vacation.
+            </p>
+            
+            <!-- Hero Search Bar -->
+            <div class="bg-white dark:bg-slate-800/95 backdrop-blur-xl p-4 rounded-2xl shadow-2xl max-w-4xl flex flex-col md:flex-row gap-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="flex-1">
+                    <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Destination</label>
+                    <input type="text" placeholder="Where are you going?" class="w-full text-gray-800 dark:text-gray-100 bg-transparent border-none focus:ring-0 text-lg placeholder-gray-400 outline-none">
+                </div>
+                <div class="w-px bg-gray-200 hidden md:block"></div>
+                <div class="flex-1">
+                    <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Dates</label>
+                    <input type="text" placeholder="Add dates" class="w-full text-gray-800 dark:text-gray-100 bg-transparent border-none focus:ring-0 text-lg placeholder-gray-400 outline-none">
+                </div>
+                <div class="w-px bg-gray-200 hidden md:block"></div>
+                <div class="flex-1">
+                    <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Travelers</label>
+                    <input type="text" placeholder="Add guests" class="w-full text-gray-800 dark:text-gray-100 bg-transparent border-none focus:ring-0 text-lg placeholder-gray-400 outline-none">
+                </div>
+                <button class="bg-brand-blue text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-900 transition-colors w-full md:w-auto">
+                    Search
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Destinations Carousel -->
+    <section class="py-24 bg-brand-light dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-bold text-brand-blue dark:text-white mb-2">Featured <span class="text-brand-orange">Destinations</span></h2>
+                    <p class="text-gray-500 dark:text-gray-400">Explore our most popular travel spots curated just for you.</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button class="p-2 rounded-full border border-gray-300 dark:border-slate-600 hover:bg-gray-100 dark:bg-slate-800 transition" onclick="document.getElementById('featured-carousel').scrollBy({left: -300, behavior: 'smooth'})">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-blue dark:text-white"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <button class="p-2 rounded-full border border-gray-300 dark:border-slate-600 hover:bg-gray-100 dark:bg-slate-800 transition" onclick="document.getElementById('featured-carousel').scrollBy({left: 300, behavior: 'smooth'})">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-blue dark:text-white"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar" id="featured-carousel">
+                <!-- Cards injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Packages -->
+    <section class="py-24 bg-white dark:bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-brand-blue mb-16 dark:text-white">Popular <span class="text-brand-orange">Packages</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="packages-container">
+                <!-- Packages injected via JS -->
+            </div>
+            <div class="text-center mt-12">
+                <a href="packages.html" class="inline-block border-2 border-brand-blue text-brand-blue px-8 py-3 rounded-full font-bold hover:bg-brand-blue hover:text-white transition-colors dark:text-white dark:border-white">View All Packages</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-brand-light dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-brand-blue mb-12 dark:text-white">What Our <span class="text-brand-orange">Travelers Say</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="testimonials-container">
+                <!-- Testimonials will be injected here via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-20 bg-brand-blue text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Get travel inspiration in your inbox!</h2>
+            <p class="text-white/80 mb-8">Sign up for our newsletter and receive exclusive deals and travel tips.</p>
+            <form class="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
+                <input type="email" placeholder="Your email address" class="px-6 py-3 rounded-full text-gray-800 dark:text-gray-100 w-full focus:outline-none focus:ring-2 focus:ring-brand-orange">
+                <button type="button" class="bg-brand-orange px-8 py-3 rounded-full font-bold hover:bg-orange-600 transition-colors whitespace-nowrap">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2026 Ramji Tour and Travel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 max-w-md w-full relative">
+            <button onclick="document.getElementById('auth-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 dark:text-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h2 class="text-3xl font-bold text-brand-blue dark:text-white mb-6" id="auth-title">Welcome Back</h2>
+            <form id="auth-form" class="space-y-4">
+                <div id="signup-fields" class="hidden space-y-4">
+                    <input type="text" id="auth-first-name" placeholder="First Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    <input type="text" id="auth-last-name" placeholder="Last Name" class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+                <input type="email" id="auth-email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <input type="password" id="auth-password" placeholder="Password" required class="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                <button type="submit" class="w-full bg-brand-orange text-white py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors" id="auth-submit">Login</button>
+            </form>
+            <div class="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
+                <span id="auth-toggle-text">Don't have an account?</span>
+                <button type="button" id="auth-toggle-btn" class="text-brand-blue font-bold hover:underline dark:text-white">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/supabase-config.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/ai-assistant.js"></script>
+</body>
+</html>
